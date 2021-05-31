@@ -59,6 +59,19 @@ echo $password | sudo -S apt upgrade -y >> $LOG 2>> $ERR
 
 ## Custom installation functions
 #-------------------------------------------------------------------------------
+echo_success(){
+    if [ $1 -ne 0 ]; then
+        printf "failed!\n"
+        printf "\nfailed!\n" >> $LOG
+        printf "\nfailed!\n" >> $ERR
+        return 1
+    fi
+
+    printf "success!\n"
+    printf "\nsuccess!\n" >> $LOG
+    printf "\nsuccess!\n" >> $ERR
+    return 0
+}
 
 apt_install(){ # will only install the first argument!
     printf "installing $1... "
@@ -102,17 +115,10 @@ link() {
 ## build tools
 apt_install git
 apt_install make
-# apt_install build-essential
+apt_install neovim
+link /usr/bin/nvim /usr/bin/vim
+apt_install ufw
 
-## Terminal
-# search tool
-# apt_install grep
-# alternative search tool
-# apt_install ripgrep
-# alternative search tool
-# apt_install ack
-# fuzzy finder tool
-# apt_install fzf
 
 ## zsh: another alternative shell. In contrast to fish, it is posix compliant + extras
 ## it's my preferred shell.
