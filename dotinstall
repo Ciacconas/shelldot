@@ -96,6 +96,24 @@ link() {
     return $exit_code
 }
 
+## Install and configure packages
+#-------------------------------------------------------------------------------
+
+## build tools
+apt_install git
+apt_install make
+apt_install cmake
+apt_install build-essential
+
+## Terminal
+# search tool
+apt_install grep
+# alternative search tool
+apt_install ripgrep
+# alternative search tool
+# apt_install ack
+# fuzzy finder tool
+apt_install fzf
 
 ## zsh: another alternative shell. In contrast to fish, it is posix compliant + extras
 ## it's my preferred shell.
