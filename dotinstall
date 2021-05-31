@@ -115,6 +115,8 @@ link() {
 ## build tools
 apt_install git
 apt_install make
+apt_install cmake
+apt_install build-essential
 apt_install neovim
 link /usr/bin/nvim /usr/bin/vim
 apt_install ufw
@@ -126,12 +128,20 @@ apt_install zsh
 ## make zsh the default shell:
 echo $password | chsh -s /usr/bin/zsh >> "$LOG" 2>> "$ERR"
 
+## fish-like autosuggestions for zsh:
+rm -rf $HOME/.config/zsh/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions 2>> "$LOG" >> "$ERR"
+
+## syntax highlighting for zsh:
+rm -rf $HOME/.config/zsh/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.config/zsh/zsh-syntax-highlighting 2>> "$LOG" >> "$ERR"
+
 ## autojump extension for bash/zsh/fish
 mkdir -p $HOME/.cache
 rm -rf $HOME/.cache/autojump
 git clone https://github.com/wting/autojump $HOME/.cache/autojump 2>> "$LOG" >> "$ERR"
 cd $HOME/.cache/autojump 2>> "$LOG" >> "$ERR"
-python install.py -d $HOME/.config/autojump 2>> "$LOG" >> "$ERR"
+python3 install.py -d $HOME/.config/autojump 2>> "$LOG" >> "$ERR"
 sed -i 's|#!/usr/bin/env python|#!/usr/bin/python|' $HOME/.config/autojump/bin/autojump >> "$LOG" 2>> "$ERR"
 ln -sf $HOME/.config/autojump/bin/autojump $HOME/.local/bin
 
@@ -140,11 +150,3 @@ rm -rf $HOME/.config/stderred
 git clone https://github.com/sickill/stderred $HOME/.config/stderred 2>> "$LOG" >> "$ERR"
 cd $HOME/.config/stderred 2>> "$LOG" >> "$ERR"
 make 2>> "$LOG" >> "$ERR"
-
-## fish-like autosuggestions for zsh:
-rm -rf $HOME/.config/zsh/zsh-autosuggestions
-git clone https://github.com/zsh-users/zsh-autosuggestions $HOME/.config/zsh/zsh-autosuggestions 2>> "$LOG" >> "$ERR"
-
-## syntax highlighting for zsh:
-rm -rf $HOME/.config/zsh/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.config/zsh/zsh-syntax-highlighting 2>> "$LOG" >> "$ERR"
