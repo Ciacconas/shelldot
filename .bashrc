@@ -17,9 +17,6 @@ function sourcefile {
     [[ -f "$1" ]] && source "$1"
 }
 
-# source settings not in source control
-sourcefile $HOME/.bashrc2
-
 # disable ctrl-s and ctrl-q
 stty -ixon
 
@@ -54,22 +51,3 @@ man() { # colored man pages:
 
 
 ## Extensions
-#-------------------------------------------------------------------------------
-
-# conda (scientific python distribution and environments)
-sourcefile "$HOME/.anaconda/etc/profile.d/conda.sh"
-
-# travis (continuous integration)
-sourcefile "$HOME/.travis/travis.sh"
-
-# broot (fuzzy file finder/jumper/...)
-sourcefile $HOME/.config/broot/launcher/bash/br
-
-# autojump
-sourcefile $HOME/.config/autojump/share/autojump/autojump.bash
-
-# my custom autojump commands (slightly different from default behavior):
-sourcefile $HOME/.scripts/autojump/autojump-improved.zsh
-
-# stderr in red:
-[ -f $HOME/.config/stderred/build/libstderred.so ] && export LD_PRELOAD="$HOME/.config/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
