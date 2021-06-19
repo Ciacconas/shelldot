@@ -194,15 +194,13 @@ bindkey '^n' autosuggest-accept #-execute
 bindkey '^o' autosuggest-toggle # enable/disable autosuggest
 
 # auto commplete based on the current input before cursor
-autoload history-search-end
-autoload history-beginning-search-backward-end
-autoload history-beginning-search-forward-end
-zle -N history-beginning-search-backward-end \
-       history-search-end
-zle -N history-beginning-search-forward-end \
-       history-search-end
-bindkey "\e[A" history-beginning-search-backward-end # up-line-or-history # alt + h
-bindkey "\e[B" history-beginning-search-forward-end # down-line-or-history # alt + l
+autoload -U history-search-end
+zle -N history-beginning-search-backward-end history-search-end
+zle -N history-beginning-search-forward-end history-search-end
+# check /etc/zsh/zshrc for keybinds
+bindkey "${terminfo[kcuu1]}" history-beginning-search-backward-end
+bindkey "${terminfo[kcud1]}" history-beginning-search-forward-end
+
 
 # stderr in red; should be last.
 [ -f $HOME/.config/stderred/build/libstderred.so ] && export LD_PRELOAD="$HOME/.config/stderred/build/libstderred.so${LD_PRELOAD:+:$LD_PRELOAD}"
