@@ -143,7 +143,7 @@ rm -rf $HOME/.cache/autojump
 git clone https://github.com/wting/autojump $HOME/.cache/autojump 2>> "$LOG" >> "$ERR"
 cd $HOME/.cache/autojump 2>> "$LOG" >> "$ERR"
 python3 install.py -d $HOME/.config/autojump 2>> "$LOG" >> "$ERR"
-sed -i 's|#!/usr/bin/env python|#!/usr/bin/python|' $HOME/.config/autojump/bin/autojump >> "$LOG" 2>> "$ERR"
+sed -i 's|#!/usr/bin/env python|#!/usr/bin/python3|' $HOME/.config/autojump/bin/autojump >> "$LOG" 2>> "$ERR"
 ln -sf $HOME/.config/autojump/bin/autojump $HOME/.local/bin
 
 ## stderred extension for bash/zsh: show stderr messages in red:
