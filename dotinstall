@@ -138,6 +138,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting $HOME/.config/zsh
 
 ## autojump extension for bash/zsh/fish
 mkdir -p $HOME/.cache
+mkdir -p $HOME/.local/bin
 rm -rf $HOME/.cache/autojump
 git clone https://github.com/wting/autojump $HOME/.cache/autojump 2>> "$LOG" >> "$ERR"
 cd $HOME/.cache/autojump 2>> "$LOG" >> "$ERR"
